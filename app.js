@@ -319,7 +319,7 @@ app.get('/regAgua2', (req, res) => {
         const anio = fechaHora.getFullYear()
         var mes = (parseInt(fechaHora.getMonth()) + 1)
         const dia = (parseInt(fechaHora.getDate()))
-        const idPersona = 9;
+        const idPersona = req.session.idPersona;
 
         let sum0, sum1, sum2 = 0;
 
