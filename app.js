@@ -59,7 +59,7 @@ import {
     DB_USER,
 
 } from './config.js'
-import { cp } from 'fs';
+
 
 
 const connection = mysql.createConnection({
@@ -683,16 +683,16 @@ app.post('/grupos', (req, res) => {
                     var admin = respuesta[0].admin;
                     var codigo = respuesta[0].idGrupo;
                     var nombreGrupo = respuesta[0].Nombre_Grupo;
-
+                    var nombre = respuesta[0].nombre;
 
                     if (req.session.idPersona == admin) {
-                        console.log('el usuario es admin');
+                        console.log('el usuario'+ nombre +' es admin');
                         var admon = 1;
-                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon })
+                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon , nombre })
                     } else {
-
+                        console.log('el usuario'+ nombre +' no  es admin');
                         var admon = 0;
-                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon })
+                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon , nombre })
                     }
 
 
