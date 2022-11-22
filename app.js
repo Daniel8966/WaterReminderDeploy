@@ -2,7 +2,7 @@
 import {
     PORT
 } from './config.js'
-//import de todo 
+//import de todo
 import express from 'express';
 
 import bodyParser from 'body-parser';
@@ -16,13 +16,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-//Delcara la app 
+//Delcara la app
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-//dotenv ? 
+//dotenv ?
 import dotenv from 'dotenv';
 dotenv.config({ path: './env/.env' })
 app.use('/resources', express.static('public'));
@@ -59,6 +59,7 @@ import {
     DB_USER,
 
 } from './config.js'
+import { cp } from 'fs';
 
 
 const connection = mysql.createConnection({
@@ -89,132 +90,6 @@ app.get('/prueba', (req, res) => {
 
 })
 app.get('/prueba2', (req, res) => {
-
-
-    const fechaHora = new Date();
-    const anio = fechaHora.getFullYear()
-    const mes = (parseInt(fechaHora.getMonth()) + 1)
-    const dia = (parseInt(fechaHora.getDate()) - 7)
-    //sacar variable de la sesion
-    const idPersona = 9
-
-    function esNumero(dato) {
-        return !isNaN(parseFloat(dato)) && isFinite(dato);
-    }
-
-    function soloNumeros(array) {
-
-        return array.filter(numero => typeof numero !== "string")
-    }
-
-    function sumarConsumo(contenido) {
-        if (!Array.isArray(contenido)) {
-            return null;
-        }
-
-        let suma = 0;
-
-        for (let i = 0; i < contenido.length; i++) {
-            const elemnto = contenido[i];
-            if (esNumero(elemnto)) {
-                suma += parseInt(elemnto);
-            }
-
-
-        }
-
-        return suma;
-    }
-
-    function sugoma (nose){
-        if (!Array.isArray(nose)) {
-            return null;
-        }
-
-        let suma = 0;
-     
-        for (let j = 0; j <= nose.length; j++) {
-            const elemnto = nose[j].Consumo_Total;
-            if (esNumero(elemnto)) {
-                suma = parseFloat(elemnto) * nose.length;
-            }
-        return suma;
-      
-    }}
-
-    var arregloprueba = [2, 3, 'amogus'];
-    console.log('prueba de sugmoa' + sumarConsumo(arregloprueba))
-
-
-    for (let i = 0; i < 8; i++) {
-        const dia = (parseInt(fechaHora.getDate()) - i)
-
-        switch (i) {
-            case 0:
-                var query = `select * from consumo_agua where Fecha = ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                connection.query(query, (error, results) => {
-                    if (error) throw error;
-                    let j = 0;
-
-
-
-                })
-                break;
-
-            case 1:
-                console.log('caso 1 ');
-                console.log('fecha : ' + `${anio}-${mes}-${dia}`)
-                var query = `select Consumo_Total from consumo_agua where Fecha = ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                connection.query(query, (error, results) => {
-                    if (error) throw error;
-                    
-                    var arraysote = Object.values(results);
-                   
-                    console.log('suma de sugoma :' + sugoma(arraysote));
-                 
-                })
-
-                break;
-
-            case 2:
-                console.log('caso 2 ');
-                console.log('fecha : ' + `${anio}-${mes}-${dia}`)
-                var query = `select Consumo_Total from consumo_agua where Fecha = ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                connection.query(query, (error, results) => {
-                    if (error) throw error;
-                    
-                    var arraysote = Object.values(results);
-                   
-                    console.log('suma de sugoma :' + sugoma(arraysote));
-                 
-                })
-
-                break;
-
-            case 3:
-
-                break;
-
-            case 4:
-
-                break;
-
-            case 5:
-
-                break;
-
-            case 6:
-
-                break;
-
-            case 7:
-
-                break;
-        }
-
-
-    }
-
 
     res.send('prueba2')
 
@@ -310,8 +185,114 @@ app.get('/home', (req, res) => {
 //REGISTROS DE CONSUMO DE AGUA
 app.get('/regAgua', (req, res) => {
     if (req.session.loggedin) {
+
         console.log('Sesion creada y existente-graficaAgua')
-        res.render('registros')
+        const fechaHora = new Date();
+        const anio = fechaHora.getFullYear()
+        const mes = (parseInt(fechaHora.getMonth()) + 1)
+        const idPersona = req.session.idPersona;
+
+        let sum0, sum1, sum2, sum3, sum4, sum5, sum6, sum7 = 0;
+
+        var dia = (parseInt(fechaHora.getDate()) - 0)
+        var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+
+        connection.query(query, (error, results) => {
+            if (error) throw error;
+            console.log('---------------caso: ' + 0 + "-------------")
+            console.log(`fecha: ${anio}-${mes}-${dia}`)
+            console.log('suma caso ' + 0 + "" + results[0].Consumo_Total)
+            sum0 = results[0].Consumo_Total;
+            console.log(sum0);
+
+            var dia = (parseInt(fechaHora.getDate()) - 1)
+            var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+            connection.query(query, (error, results) => {
+                if (error) throw error;
+                console.log('---------------caso: ' + 1 + "-------------")
+                console.log(`fecha: ${anio}-${mes}-${dia}`)
+                console.log('suma caso ' + 1 + "" + results[0].Consumo_Total)
+                sum1 = results[0].Consumo_Total;
+
+                var dia = (parseInt(fechaHora.getDate()) - 2)
+                var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+                connection.query(query, (error, results) => {
+                    if (error) throw error;
+                    console.log('---------------caso: ' + 2 + "-------------")
+                    console.log(`fecha: ${anio}-${mes}-${dia}`)
+                    console.log('suma caso ' + 2 + "" + results[0].Consumo_Total)
+                    sum2 = results[0].Consumo_Total;
+
+                    var dia = (parseInt(fechaHora.getDate()) - 3)
+                    var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+                    connection.query(query, (error, results) => {
+                        if (error) throw error;
+                        console.log('---------------caso: ' + 3 + "-------------")
+                        console.log(`fecha: ${anio}-${mes}-${dia}`)
+                        console.log('suma caso ' + 3 + "" + results[0].Consumo_Total)
+                        sum3 = results[0].Consumo_Total;
+
+                        var dia = (parseInt(fechaHora.getDate()) - 4)
+                        var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+                        connection.query(query, (error, results) => {
+                            if (error) throw error;
+                            console.log('---------------caso: ' + 4 + "-------------")
+                            console.log(`fecha: ${anio}-${mes}-${dia}`)
+                            console.log('suma caso ' + 4 + "" + results[0].Consumo_Total)
+                            sum4 = results[0].Consumo_Total;
+
+                            var dia = (parseInt(fechaHora.getDate()) - 5)
+                            var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+                            connection.query(query, (error, results) => {
+                                if (error) throw error;
+
+                                console.log('---------------caso: ' + 5 + "-------------")
+                                console.log(`fecha: ${anio}-${mes}-${dia}`)
+                                console.log('suma caso ' + 5 + "" + results[0].Consumo_Total)
+                                sum5 = results[0].Consumo_Total;
+
+
+                                var dia = (parseInt(fechaHora.getDate()) - 6)
+                                var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+                                connection.query(query, (error, results) => {
+                                    if (error) throw error;
+
+                                    console.log('---------------caso: ' + 6 + "-------------")
+                                    console.log(`fecha: ${anio}-${mes}-${dia}`)
+                                    console.log('suma caso ' + 6 + "" + results[0].Consumo_Total)
+                                    sum6 = results[0].Consumo_Total;
+
+
+                                    var dia = (parseInt(fechaHora.getDate()) - 7)
+                                    var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+                                    connection.query(query, (error, results) => {
+                                        if (error) throw error;
+                                        console.log('---------------caso: ' + 7 + "-------------")
+                                        console.log(`fecha: ${anio}-${mes}-${dia}`)
+                                        console.log('suma caso ' + 7 + "" + results[0].Consumo_Total)
+                                        sum7 = results[0].Consumo_Total;
+                                        console.log('suma 0: ' + sum0 +
+                                            'suma 1: ' + sum1 +
+                                            'suma 2: ' + sum2 +
+                                            'suma 3: ' + sum3 +
+                                            'suma 4: ' + sum4 +
+                                            'suma 5: ' + sum5 +
+                                            'suma 6: ' + sum6 +
+                                            'suma 7: ' + sum7 + '')
+                                        res.render('registros', { sum0, sum1, sum2, sum3, sum4, sum5, sum6, sum7 });
+
+                                    })
+
+                                })
+                            })
+
+                        })
+                    })
+
+                })
+            })
+
+        })
     } else {
         console.log('NO hay sesion activa-Login')
         res.render('login', {
@@ -321,6 +302,40 @@ app.get('/regAgua', (req, res) => {
     }
 
 })
+app.get('/regAgua2', (req, res) => {
+    if (req.session.loggedin) {
+
+        console.log('Sesion creada y existente-graficaAgua mes')
+        const fechaHora = new Date();
+        const anio = fechaHora.getFullYear()
+        var mes = (parseInt(fechaHora.getMonth()) + 1 )
+        const dia = (parseInt(fechaHora.getDate()))
+        const idPersona = req.session.idPersona;
+
+        var fecha = `('${anio}-${mes}-${dia}')`;
+        let sum0, sum1, sum2 = 0;
+
+
+        connection.query(`SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`, (error, results) => {
+            if (error) throw error;
+            console.log('---------------caso: ' + 0 + "-------------")
+            console.log(`fecha: ${anio}-${mes}-${dia}`)
+            console.log('suma mes ' + 1 + "" + results[0].sumita)
+            sum0 = results[0].Consumo_Total;
+
+
+        })
+
+    } else {
+        console.log('NO hay sesion activa-Login')
+        res.render('login', {
+            login: false,
+            name: 'Inicie Sesion'
+        })
+    }
+
+})
+
 //OTRAS BEBIDAS--REFRESCOS
 app.get('/Bebidas', (req, res) => {
     if (req.session.loggedin) {
@@ -532,7 +547,7 @@ app.post('/addWater', (req, res) => {
     const cantidad = req.body.taza;
     const fechaHora = new Date();
     const anio = fechaHora.getFullYear()
-    const mes = (parseInt(fechaHora.getMonth()) + 1)
+    const mes = (parseInt(fechaHora.getMonth()))
     const dia = fechaHora.getDate();
 
     console.log("anio: " + anio + " mes: " + mes + " dia: " + dia)
@@ -747,7 +762,7 @@ app.post('/unirseGrupo1', (req, res) => {
         //codigo con el q se une
         var codigo = req.body.codigo;
 
-        //obtener esta id de la sesion 
+        //obtener esta id de la sesion
         var idPersona = req.session.idPersona;
 
         //Validar q la persona no este en el grupo
@@ -857,5 +872,6 @@ app.post('/salirGrupo', (req, res) => {
 
 //DEPLOY EN EL PUERTO
 app.listen(PORT, (req, res) => {
-    console.log('Escuchando desde el puerto 3150')
+    console.log('Escuchando desde el puerto 3150');
+
 })
