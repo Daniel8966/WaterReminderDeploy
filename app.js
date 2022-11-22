@@ -246,7 +246,7 @@ app.get('/regAgua', (req, res) => {
                             console.log('---------------caso: ' + 4 + "-------------")
                             console.log(`fecha: ${anio}-${mes}-${dia4}`)
                             console.log('suma caso ' + 4 + "" + results4[0].Consumo_Total)
-                          
+
                             sum4 = results4[0].Consumo_Total;
 
                             var dia5 = (parseInt(fechaHora.getDate()) - 5)
@@ -311,36 +311,65 @@ app.get('/regAgua', (req, res) => {
 
 })
 app.get('/regAgua2', (req, res) => {
-    if (req.session.loggedin) {
 
+    if (req.session.loggedin) {
+        console.log('Sesion existente - grafica agua mes')
         console.log('Sesion creada y existente-graficaAgua mes')
         const fechaHora = new Date();
         const anio = fechaHora.getFullYear()
         var mes = (parseInt(fechaHora.getMonth()) + 1)
         const dia = (parseInt(fechaHora.getDate()))
-        const idPersona = req.session.idPersona;
+        const idPersona = 9;
 
-        var fecha = `('${anio}-${mes}-${dia}')`;
         let sum0, sum1, sum2 = 0;
 
-
-        connection.query(`SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`, (error, results) => {
+        var query0 = `SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = (${mes}) and Persona_idPersona = ${idPersona}`
+        connection.query(query0, (error, results) => {
             if (error) throw error;
+            console.log(query0)
             console.log('---------------caso: ' + 0 + "-------------")
             console.log(`fecha: ${anio}-${mes}-${dia}`)
-            console.log('suma mes ' + 1 + "" + results[0].sumita)
-            sum0 = results[0].Consumo_Total;
 
+            sum0 = results[0].sumita;
+            console.log('caso 0: ' + sum0);
+            var mes = (parseInt(fechaHora.getMonth()))
+            var query1 = `SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = (${mes}) and Persona_idPersona = ${idPersona}`
+
+            connection.query(query1, (error, results) => {
+                if (error) throw error;
+                console.log(query1)
+                console.log('---------------caso: ' + 1 + "-------------")
+                console.log(`fecha: ${anio}-${mes}-${dia}`)
+
+                sum1 = results[0].sumita;
+                console.log('caso 0: ' + sum1);
+                var mes = (parseInt(fechaHora.getMonth()) - 1)
+                var query2 = `SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = (${mes}) and Persona_idPersona = ${idPersona}`
+
+                connection.query(query2, (error, results) => {
+                    if (error) throw error;
+                    console.log(query2)
+                    console.log('---------------caso: ' + 2 + "-------------")
+                    console.log(`fecha: ${anio}-${mes}-${dia}`)
+                    sum2 = results[0].sumita;
+                    console.log('caso 0: ' + sum2);
+                    res.render('registros2', { sum0, sum1, sum2 })
+                })
+
+            })
 
         })
-
     } else {
-        console.log('NO hay sesion activa-Login')
+        console.log('NO hay sesion activa Login')
         res.render('login', {
             login: false,
             name: 'Inicie Sesion'
         })
     }
+
+
+
+
 
 })
 
@@ -556,8 +585,8 @@ app.post('/addWater', (req, res) => {
     const cantidad = req.body.taza;
     const fechaHora = new Date();
     const anio = fechaHora.getFullYear()
-    const mes = (parseInt(fechaHora.getMonth()) + 1 )
-    const dia = (parseInt(fechaHora.getDate()) ) ;
+    const mes = (parseInt(fechaHora.getMonth()) + 1)
+    const dia = (parseInt(fechaHora.getDate()));
 
     console.log("anio: " + anio + " mes: " + mes + " dia: " + dia)
     connection.query(`INSERT INTO consumo_agua (Consumo_Total,Fecha,Persona_idPersona,datos_bebida_idRegistro_bebida,datos_bebida_CTipo_bebida_idCTipo_bebida) VALUES (${parseInt(cantidad)},'${anio}-${mes}-${dia}',${req.session.idPersona},1,1)`, (err, respuesta, fields) => {
@@ -685,16 +714,16 @@ app.post('/grupos', (req, res) => {
                     var admin = respuesta[0].admin;
                     var codigo = respuesta[0].idGrupo;
                     var nombreGrupo = respuesta[0].Nombre_Grupo;
-                    
+
 
                     if (req.session.idPersona == admin) {
-                        console.log('el usuario'+ nombre +' es admin');
+                        console.log('el usuario' + nombre + ' es admin');
                         var admon = 1;
-                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon , nombre })
+                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon, nombre })
                     } else {
-                        console.log('el usuario'+ nombre +' no  es admin');
+                        console.log('el usuario' + nombre + ' no  es admin');
                         var admon = 0;
-                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon , nombre })
+                        res.render('grupos1', { respuesta: respuesta, codigo, nombreGrupo, admon, nombre })
                     }
 
 
