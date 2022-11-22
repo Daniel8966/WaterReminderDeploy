@@ -498,9 +498,10 @@ app.post('/auth', async (req, res) => {
     const Password = req.body.pass;
 
     if (Usuario && Password) {
-        connection.query('SELECT idPersona, idUsuario FROM persona INNER JOIN usuario ON persona.Usuario_idUsuario=usuario.idUsuario WHERE email="' + Usuario + '"', (error, respuesta, field) => {
+        connection.query('SELECT idPersona, Usuario, idUsuario FROM persona INNER JOIN usuario ON persona.Usuario_idUsuario=usuario.idUsuario WHERE email="' + Usuario + '"', (error, respuesta, field) => {
             console.log(`EL id de quien ingreso es: ${respuesta[0].idPersona}`)
             req.session.idPersona = respuesta[0].idPersona; //Guardando Id de persona en la sesion
+            req.session.nombre = respuesta[0].Usuario;
         })
 
         connection.query('SELECT idUsuario FROM usuario WHERE email="' + Usuario + '"', (error, respuesta, field) => {
@@ -653,6 +654,7 @@ app.get('/grupo', (req, res) => {
 app.post('/grupos', (req, res) => {
     if (req.session.loggedin) {
         console.log('Sesion existente')
+        var nombre = req.session.nombre;
         var idGrupo = req.body.codigo;
         var query = String("select " +
             "idUsuario as 'idUsuario', " +
@@ -683,7 +685,7 @@ app.post('/grupos', (req, res) => {
                     var admin = respuesta[0].admin;
                     var codigo = respuesta[0].idGrupo;
                     var nombreGrupo = respuesta[0].Nombre_Grupo;
-                    var nombre = respuesta[0].nombre;
+                    
 
                     if (req.session.idPersona == admin) {
                         console.log('el usuario'+ nombre +' es admin');
