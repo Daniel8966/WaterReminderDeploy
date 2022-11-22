@@ -191,94 +191,102 @@ app.get('/regAgua', (req, res) => {
         const anio = fechaHora.getFullYear()
         const mes = (parseInt(fechaHora.getMonth()) + 1)
         const idPersona = req.session.idPersona;
+        console.log('id Persona: ' + idPersona)
+
 
         let sum0, sum1, sum2, sum3, sum4, sum5, sum6, sum7 = 0;
 
-        var dia = (parseInt(fechaHora.getDate()) - 0)
-        var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
 
-        connection.query(query, (error, results) => {
+        var dia = (parseInt(fechaHora.getDate()) - 0);
+        console.log(`fecha 1 : ${anio}-${mes}-${dia}`);
+        var query0 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
+
+        connection.query(query0, (error, results0) => {
             if (error) throw error;
             console.log('---------------caso: ' + 0 + "-------------")
             console.log(`fecha: ${anio}-${mes}-${dia}`)
-            console.log('suma caso ' + 0 + "" + results[0].Consumo_Total)
-            sum0 = results[0].Consumo_Total;
-            console.log(sum0);
+            console.log('suma caso ' + 0 + "" + results0[0].Consumo_Total)
+            sum0 = results0[0].Consumo_Total;
+            console.log(query0)
 
-            var dia = (parseInt(fechaHora.getDate()) - 1)
-            var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-            connection.query(query, (error, results) => {
+
+            var dia1 = (parseInt(fechaHora.getDate()) - 1);
+            console.log(`fecha 2 : ${anio}-${mes}-${dia1}`)
+            var query1 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia1}') and Persona_idPersona = ${idPersona}`
+            connection.query(query1, (error, results1) => {
                 if (error) throw error;
                 console.log('---------------caso: ' + 1 + "-------------")
-                console.log(`fecha: ${anio}-${mes}-${dia}`)
-                console.log('suma caso ' + 1 + "" + results[0].Consumo_Total)
-                sum1 = results[0].Consumo_Total;
+                console.log(`fecha: ${anio}-${mes}-${dia1}`)
+                console.log('suma caso ' + 1 + " " + results1[0].Consumo_Total)
+                sum1 = results1[0].Consumo_Total;
 
-                var dia = (parseInt(fechaHora.getDate()) - 2)
-                var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                connection.query(query, (error, results) => {
+                var dia2 = (parseInt(fechaHora.getDate()) - 2)
+                console.log(`fecha 2 : ${anio}-${mes}-${dia2}`)
+                var query2 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia2}') and Persona_idPersona = ${idPersona}`
+                connection.query(query2, (error, results2) => {
                     if (error) throw error;
                     console.log('---------------caso: ' + 2 + "-------------")
-                    console.log(`fecha: ${anio}-${mes}-${dia}`)
-                    console.log('suma caso ' + 2 + "" + results[0].Consumo_Total)
-                    sum2 = results[0].Consumo_Total;
+                    console.log(`fecha: ${anio}-${mes}-${dia2}`)
+                    console.log('suma caso ' + 2 + "" + results2[0].Consumo_Total)
+                    sum2 = results2[0].Consumo_Total;
 
-                    var dia = (parseInt(fechaHora.getDate()) - 3)
-                    var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                    connection.query(query, (error, results) => {
+                    var dia3 = (parseInt(fechaHora.getDate()) - 3)
+                    var query3 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia3}') and Persona_idPersona = ${idPersona}`
+                    connection.query(query3, (error, results3) => {
                         if (error) throw error;
                         console.log('---------------caso: ' + 3 + "-------------")
-                        console.log(`fecha: ${anio}-${mes}-${dia}`)
-                        console.log('suma caso ' + 3 + "" + results[0].Consumo_Total)
-                        sum3 = results[0].Consumo_Total;
+                        console.log(`fecha: ${anio}-${mes}-${dia3}`)
+                        console.log('suma caso ' + 3 + "" + results3[0].Consumo_Total)
+                        sum3 = results3[0].Consumo_Total;
 
-                        var dia = (parseInt(fechaHora.getDate()) - 4)
-                        var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                        connection.query(query, (error, results) => {
+                        var dia4 = (parseInt(fechaHora.getDate()) - 4)
+                        var query4 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia4}') and Persona_idPersona = ${idPersona}`
+                        connection.query(query4, (error, results4) => {
                             if (error) throw error;
                             console.log('---------------caso: ' + 4 + "-------------")
-                            console.log(`fecha: ${anio}-${mes}-${dia}`)
-                            console.log('suma caso ' + 4 + "" + results[0].Consumo_Total)
-                            sum4 = results[0].Consumo_Total;
+                            console.log(`fecha: ${anio}-${mes}-${dia4}`)
+                            console.log('suma caso ' + 4 + "" + results4[0].Consumo_Total)
+                          
+                            sum4 = results4[0].Consumo_Total;
 
-                            var dia = (parseInt(fechaHora.getDate()) - 5)
-                            var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                            connection.query(query, (error, results) => {
+                            var dia5 = (parseInt(fechaHora.getDate()) - 5)
+                            var query5 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia5}') and Persona_idPersona = ${idPersona}`
+                            connection.query(query5, (error, results5) => {
                                 if (error) throw error;
 
                                 console.log('---------------caso: ' + 5 + "-------------")
-                                console.log(`fecha: ${anio}-${mes}-${dia}`)
-                                console.log('suma caso ' + 5 + "" + results[0].Consumo_Total)
-                                sum5 = results[0].Consumo_Total;
+                                console.log(`fecha: ${anio}-${mes}-${dia5}`)
+                                console.log('suma caso ' + 5 + "" + results5[0].Consumo_Total)
+                                sum5 = results5[0].Consumo_Total;
 
 
-                                var dia = (parseInt(fechaHora.getDate()) - 6)
-                                var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                                connection.query(query, (error, results) => {
+                                var dia6 = (parseInt(fechaHora.getDate()) - 6)
+                                var query6 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia6}') and Persona_idPersona = ${idPersona}`
+                                connection.query(query6, (error, results6) => {
                                     if (error) throw error;
 
                                     console.log('---------------caso: ' + 6 + "-------------")
-                                    console.log(`fecha: ${anio}-${mes}-${dia}`)
-                                    console.log('suma caso ' + 6 + "" + results[0].Consumo_Total)
-                                    sum6 = results[0].Consumo_Total;
+                                    console.log(`fecha: ${anio}-${mes}-${dia6}`)
+                                    console.log('suma caso ' + 6 + "" + results6[0].Consumo_Total)
+                                    sum6 = results6[0].Consumo_Total;
 
 
-                                    var dia = (parseInt(fechaHora.getDate()) - 7)
-                                    var query = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia}') and Persona_idPersona = ${idPersona}`
-                                    connection.query(query, (error, results) => {
+                                    var dia7 = (parseInt(fechaHora.getDate()) - 7)
+                                    var query7 = `select SUM(Consumo_Total) as Consumo_Total from consumo_agua where Fecha =   ('${anio}-${mes}-${dia7}') and Persona_idPersona = ${idPersona}`
+                                    connection.query(query7, (error, results7) => {
                                         if (error) throw error;
                                         console.log('---------------caso: ' + 7 + "-------------")
                                         console.log(`fecha: ${anio}-${mes}-${dia}`)
-                                        console.log('suma caso ' + 7 + "" + results[0].Consumo_Total)
-                                        sum7 = results[0].Consumo_Total;
+                                        console.log('suma caso ' + 7 + "" + results7[0].Consumo_Total)
+                                        sum7 = results7[0].Consumo_Total;
                                         console.log('suma 0: ' + sum0 +
-                                            'suma 1: ' + sum1 +
-                                            'suma 2: ' + sum2 +
-                                            'suma 3: ' + sum3 +
-                                            'suma 4: ' + sum4 +
-                                            'suma 5: ' + sum5 +
-                                            'suma 6: ' + sum6 +
-                                            'suma 7: ' + sum7 + '')
+                                            ' suma 1: ' + sum1 +
+                                            ' suma 2: ' + sum2 +
+                                            ' suma 3: ' + sum3 +
+                                            ' suma 4: ' + sum4 +
+                                            ' suma 5: ' + sum5 +
+                                            ' suma 6: ' + sum6 +
+                                            ' suma 7: ' + sum7 + '')
                                         res.render('registros', { sum0, sum1, sum2, sum3, sum4, sum5, sum6, sum7 });
 
                                     })
@@ -308,7 +316,7 @@ app.get('/regAgua2', (req, res) => {
         console.log('Sesion creada y existente-graficaAgua mes')
         const fechaHora = new Date();
         const anio = fechaHora.getFullYear()
-        var mes = (parseInt(fechaHora.getMonth()) + 1 )
+        var mes = (parseInt(fechaHora.getMonth()) + 1)
         const dia = (parseInt(fechaHora.getDate()))
         const idPersona = req.session.idPersona;
 
@@ -547,8 +555,8 @@ app.post('/addWater', (req, res) => {
     const cantidad = req.body.taza;
     const fechaHora = new Date();
     const anio = fechaHora.getFullYear()
-    const mes = (parseInt(fechaHora.getMonth()))
-    const dia = fechaHora.getDate();
+    const mes = (parseInt(fechaHora.getMonth()) + 1 )
+    const dia = (parseInt(fechaHora.getDate()) - 6 ) ;
 
     console.log("anio: " + anio + " mes: " + mes + " dia: " + dia)
     connection.query(`INSERT INTO consumo_agua (Consumo_Total,Fecha,Persona_idPersona,datos_bebida_idRegistro_bebida,datos_bebida_CTipo_bebida_idCTipo_bebida) VALUES (${parseInt(cantidad)},'${anio}-${mes}-${dia}',${req.session.idPersona},1,1)`, (err, respuesta, fields) => {
