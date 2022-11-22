@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Ollie landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Home</title>
+    <link rel="stylesheet" href="resources/style.css">
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="resources/assets/vendors/themify-icons/css/themify-icons.css">
+    
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="resources/assets/vendors/owl-carousel/css/owl.carousel.css">
+    <link rel="stylesheet" href="resources/assets/vendors/owl-carousel/css/owl.theme.default.css">
+
+    <!-- Bootstrap + Ollie main styles -->
+	<link rel="stylesheet" href="resources/assets/css/ollie.css">
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" >
+
+    <nav id="scrollspy" class="navbar navbar-light bg-light navbar-expand-lg fixed-top" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a href="/home" class="navbar-brand" ><img src="resources/assets/imgs/plantita.png   " alt="" class="brand-img"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/regAgua">Registro&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Bebidas">Otras bebidas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/grupo">Grupos&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/configuracion">Configuración&nbsp;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<header id="home" class="heaoder">
+        <div class="overlay"></div>
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">  
+            <div class="container">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-caption d-none d-md-block">
+                            <!-- <h1 align="center"><font color="#F2D049">Objetivo de agua de </font></h1>
+                            <h1 align="center">1200mL</h1> -->
+                            <h1 align="center"><font color="#F2D049">Bienvenido</font></h1>
+                            <h1 align="center"><%= nombre %></h1>
+                            <br>
+                            <h1 align="center"><font color="#F2D049">Hoy debes beber:</font></h1>
+                            <h1 align="center"><%= tuAgua %>mL</h1>
+                            <h1 align="center"><font color="#F2D049">Has consumido en total:</font></h1>
+                            <h1 align="center"><%= totalAgua %>mL</h1>
+                            <div id="animacion">
+                                <img src="resources/agua.gif"  height="200px" width="200px"> 
+                            </div><br>
+                            <div class="regAgua">
+                                <form name="confirmarconsumo" action="/addWater" method="post">
+                                    <h3 align="center">
+                                        <select name="taza" id="taza">
+                                            <option value="200">200mL</option>
+                                            <option value="400">400mL</option>
+                                            <option value="500">500mL</option>
+                                            <option value="600">600mL</option>
+                                            <option value="800">800mL</option>
+                                            <option value="1000">1000mL</option>
+                                            <option value="1500">1500mL</option>
+                                        </select>
+                                    </h3>
+                                    <div align="center" id="confirmarconsumo" > 
+                                        <button class="btn btn-primary" type="submit">Confirmar consumo</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <br>
+							<form name="registrodiario" action="/"><center>
+						        <table class="tabla" width="900" >
+                                    <tbody>
+                                        <% consumoUser.forEach((user)=>{%> 
+                                        <tr>
+                                            <td><img src="resources/agua.gif"  height="70px" width="70px"></td>
+                                            <td><%= user.Consumo_Total %></td>
+                                            <td><%= user.Fecha %></td>
+                                            <td><a href="/delWater/<%= user.idConsumo_Agua %>"> <img src="resources/basura.png" style="height: 40px; width:40px;"> </a></td>
+                                        </tr>
+                                        <%})%>
+                                    </tbody>
+                                </table></center>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    
+	</header>
+    <header id="home" class="header">
+        <div class="overlay">
+         
+        </div>
+
+        
+    
+        
+	<!-- core  -->
+    <script src="resources/assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="resources/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+	<script src="resources/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    
+    <!-- Owl carousel  -->
+    <script src="resources/assets/vendors/owl-carousel/js/owl.carousel.js"></script>
+
+
+    <!-- Ollie js -->
+    <script src="resources/assets/js/Ollie.js"></script>
+
+</body>
+</html>

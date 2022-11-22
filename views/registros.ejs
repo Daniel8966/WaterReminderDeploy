@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Ollie landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Registros</title>
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="resources/assets/vendors/themify-icons/css/themify-icons.css">
+
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="resources/assets/vendors/owl-carousel/css/owl.carousel.css">
+    <link rel="stylesheet" href="resources/assets/vendors/owl-carousel/css/owl.theme.default.css">
+
+    <!-- Bootstrap + Ollie main styles -->
+    <link rel="stylesheet" href="resources/assets/css/ollie.css">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" onload="showResults1();">
+
+    <nav id="scrollspy" class="navbar navbar-light bg-light navbar-expand-lg fixed-top" data-spy="affix"
+        data-offset-top="20">
+        <div class="container">
+            <a href="home.html" class="navbar-brand"><img src="resources/assets/imgs/plantita.png" alt=""
+                    class="brand-img"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/regAgua">Registro&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Bebidas">Otras bebidas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/grupo">Grupos&nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/configuracion">Configuración&nbsp;</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <header id="home" class="heaoder">
+        <div class="overlay"></div>
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="container">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-caption d-none d-md-block">
+                            <div class="table-row">
+                                <div class="taable-cell">
+                                    <h1 align="center">
+                                        <font color="#F2D049">Registro</font>
+                                    </h1>
+                                    <br>
+                                    <table text align="center" width="600" border="1" bordercolor="white">
+                                        <tbody>
+                                            <tr>
+                                                <td class="grafica">
+                                                    <form id="form-param">
+                                                        <div class="container">
+                                                            <div>
+                                                                <input type="text" hidden class="parametro"
+                                                                    placeholder="parametro" value="Lunes">
+
+                                                                <input type="number" hidden class="valor"
+                                                                    placeholder="valor" value="1">
+                                                            </div>
+                                                            <div>
+                                                                <input type="text" hidden class="parametro"
+                                                                    placeholder="parametro" value="Martes">
+
+                                                                <input type="number" hidden class="valor"
+                                                                    placeholder="valor" value="2">
+                                                            </div>
+                                                            <div>
+                                                                <input type="text" hidden class="parametro"
+                                                                    placeholder="parametro" value="Miercoles">
+
+                                                                <input type="number" hidden class="valor"
+                                                                    placeholder="valor" value="4">
+                                                            </div>
+                                                            <div>
+                                                                <input type="text" hidden class="parametro"
+                                                                    placeholder="parametro" value="Jueves" >
+
+                                                                <input type="number" hidden class="valor"
+                                                                    placeholder="valor" value="2">
+                                                            </div>
+                                                            <div>                                                                                                                     
+                                                                <input type="text" hidden class="parametro"
+                                                                    placeholder="parametro" value="Viernes" >
+
+
+                                                                <input type="number" hidden class="valor"
+                                                                    placeholder="valor" value="1">
+
+                                                            </div>
+                                                            <div>
+                                                                <input type="text" hidden class="parametro"
+                                                                    placeholder="parametro" value="Sabado">
+
+                                                                <input type="number" hidden class="valor"
+                                                                    placeholder="valor" value="3">
+                                                            </div>
+                                                            <div>
+                                                                <input type="text" hidden class="parametro"
+                                                                    placeholder="parametro" value="Domingo">
+
+                                                                <input type="number" hidden class="valor"
+                                                                    placeholder="valor" value="2">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                    <div id="grafico"></div>
+
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td text align="center"><input type="button" class="btn btn-primary"
+                                                        value="Mes"> <input type="button" class="btn btn-primary"
+                                                        value="Año"> &nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br><br><br>
+                                    <table text align="center" width="600" border="1" bordercolor="white">
+                                        <tbody>
+                                            <tr>
+                                                <td>Promedio semanal&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>promedio mensual&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Promedio de finalizacion&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Frecuencia de bebida&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="taable-cell">
+                                    <p><img src="resources/assets/imgs/registro.png" alt=""></p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            function showResults1() {
+                console.log('se ejecuto el script')
+                var parametros = [];
+                var valores = [];
+
+                for (var i = 0; i < document.querySelectorAll('.parametro').length; i++) {
+                    parametros.push(document.querySelectorAll('.parametro')[i].value);
+                    valores.push(parseInt(document.querySelectorAll(".valor")[i].value));
+                }
+                var data = [{
+                    x: parametros,
+                    y: valores,
+                    type: "linear"
+                }];
+                Plotly.newPlot("grafico", data);
+            }
+
+        </script>
+
+        <!-- core  -->
+        <script src="resources/assets/vendors/jquery/jquery-3.4.1.js"></script>
+        <script src="resources/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+        <!-- bootstrap 3 affix -->
+        <script src="resources/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+        <!-- Owl carousel  -->
+        <script src="resources/assets/vendors/owl-carousel/js/owl.carousel.js"></script>
+
+
+        <!-- Ollie js -->
+        <script src="resources/assets/js/Ollie.js"></script>
+
+</body>
+
+</html>
