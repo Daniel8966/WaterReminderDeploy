@@ -332,8 +332,8 @@ app.get('/regAgua2', (req, res) => {
 
             sum0 = results[0].sumita;
             console.log('caso 0: ' + sum0);
-            var mes = (parseInt(fechaHora.getMonth()))
-            var query1 = `SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = (${mes}) and Persona_idPersona = ${idPersona}`
+            var mes1 = (parseInt(fechaHora.getMonth()))
+            var query1 = `SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = (${mes1}) and Persona_idPersona = ${idPersona}`
 
             connection.query(query1, (error, results) => {
                 if (error) throw error;
@@ -343,8 +343,8 @@ app.get('/regAgua2', (req, res) => {
 
                 sum1 = results[0].sumita;
                 console.log('caso 0: ' + sum1);
-                var mes = (parseInt(fechaHora.getMonth()) - 1)
-                var query2 = `SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = (${mes}) and Persona_idPersona = ${idPersona}`
+                var mes2 = (parseInt(fechaHora.getMonth()) - 1)
+                var query2 = `SELECT SUM(Consumo_Total) as sumita FROM consumo_agua WHERE MONTH(Fecha) = (${mes2}) and Persona_idPersona = ${idPersona}`
 
                 connection.query(query2, (error, results) => {
                     if (error) throw error;
