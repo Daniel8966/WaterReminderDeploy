@@ -556,7 +556,7 @@ app.post('/addWater', (req, res) => {
     const fechaHora = new Date();
     const anio = fechaHora.getFullYear()
     const mes = (parseInt(fechaHora.getMonth()) + 1 )
-    const dia = (parseInt(fechaHora.getDate()) - 6 ) ;
+    const dia = (parseInt(fechaHora.getDate()) ) ;
 
     console.log("anio: " + anio + " mes: " + mes + " dia: " + dia)
     connection.query(`INSERT INTO consumo_agua (Consumo_Total,Fecha,Persona_idPersona,datos_bebida_idRegistro_bebida,datos_bebida_CTipo_bebida_idCTipo_bebida) VALUES (${parseInt(cantidad)},'${anio}-${mes}-${dia}',${req.session.idPersona},1,1)`, (err, respuesta, fields) => {
