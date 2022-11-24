@@ -12298,3 +12298,13 @@ tr, td {
   width: auto;
   padding: 10px;
 }
+
+.msr{
+  margin-top: 40%;
+  align-items: flex-end;
+
+}
+.arr{
+  color: white;
+  align-items: center;
+}
