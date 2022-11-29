@@ -12088,7 +12088,6 @@ margin:auto;
   
 }
 .taaable-cell{
-
   vertical-align: bottom;
   top: -10rem;
   width: auto;
@@ -12290,6 +12289,7 @@ tr, td {
   padding: 7px;
   border-radius: 15px;
 }
+
 .grup{
   top: 10rem;
 }
@@ -12301,8 +12301,8 @@ tr, td {
 
 .msr{
   margin-top: 40%;
-  align-items: flex-end;
-
+  overflow-x: hidden;
+  margin-left: 5rem;
 }
 .arr{
   color: white;
